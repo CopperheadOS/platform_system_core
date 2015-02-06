@@ -80,6 +80,7 @@ Result<Success> MixHwrngIntoLinuxRngAction(const BuiltinArguments&) {
     }
 
     LOG(INFO) << "Mixed " << total_bytes_written << " bytes from /dev/hw_random into /dev/urandom";
+    explicit_memset(buf, 0, sizeof(buf));
     return Success();
 }
 
