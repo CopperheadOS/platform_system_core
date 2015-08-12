@@ -80,8 +80,8 @@ struct output_file {
 	int64_t cur_out_ptr;
 	unsigned int chunk_cnt;
 	uint32_t crc32;
-	struct output_file_ops *ops;
-	struct sparse_file_ops *sparse_ops;
+	const struct output_file_ops *ops;
+	const struct sparse_file_ops *sparse_ops;
 	int use_crc;
 	unsigned int block_size;
 	int64_t len;
@@ -178,7 +178,7 @@ static void file_close(struct output_file *out)
 	free(outn);
 }
 
-static struct output_file_ops file_ops = {
+static const struct output_file_ops file_ops = {
 	.open = file_open,
 	.skip = file_skip,
 	.pad = file_pad,
@@ -264,7 +264,7 @@ static void gz_file_close(struct output_file *out)
 	free(outgz);
 }
 
-static struct output_file_ops gz_file_ops = {
+static const struct output_file_ops gz_file_ops = {
 	.open = gz_file_open,
 	.skip = gz_file_skip,
 	.pad = gz_file_pad,
@@ -314,7 +314,7 @@ static void callback_file_close(struct output_file *out)
 	free(outc);
 }
 
-static struct output_file_ops callback_file_ops = {
+static const struct output_file_ops callback_file_ops = {
 	.open = callback_file_open,
 	.skip = callback_file_skip,
 	.pad = callback_file_pad,
@@ -472,7 +472,7 @@ int write_sparse_end_chunk(struct output_file *out)
 	return 0;
 }
 
-static struct sparse_file_ops sparse_file_ops = {
+static const struct sparse_file_ops sparse_file_ops = {
 		.write_data_chunk = write_sparse_data_chunk,
 		.write_fill_chunk = write_sparse_fill_chunk,
 		.write_skip_chunk = write_sparse_skip_chunk,
@@ -532,7 +532,7 @@ int write_normal_end_chunk(struct output_file *out)
 	return out->ops->pad(out, out->len);
 }
 
-static struct sparse_file_ops normal_file_ops = {
+static const struct sparse_file_ops normal_file_ops = {
 		.write_data_chunk = write_normal_data_chunk,
 		.write_fill_chunk = write_normal_fill_chunk,
 		.write_skip_chunk = write_normal_skip_chunk,

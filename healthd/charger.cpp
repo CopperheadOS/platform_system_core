@@ -53,7 +53,7 @@ static struct healthd_mode_ops healthd_nops = {
 };
 
 #ifdef CHARGER_NO_UI
-static struct healthd_mode_ops charger_ops = healthd_nops;
+static  struct healthd_mode_ops charger_ops = healthd_nops;
 #else
 static struct healthd_mode_ops charger_ops = {
     .init = healthd_mode_charger_init,
