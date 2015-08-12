@@ -24,7 +24,7 @@
 
 #include "autosuspend_ops.h"
 
-static struct autosuspend_ops* autosuspend_ops = NULL;
+static const struct autosuspend_ops* autosuspend_ops = NULL;
 static bool autosuspend_enabled;
 
 static int autosuspend_init(void) {
