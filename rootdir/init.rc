@@ -671,6 +671,10 @@ on boot
     chown root system /sys/block/zram0/writeback
     chmod 0664 /sys/block/zram0/writeback
 
+    # OpenBSD malloc is quite heavy on VMAs
+    write /proc/sys/vm/max_map_count 262120 # increase to 4x
+    write /proc/sys/kernel/pid_max 8192 # reduce to 1/4
+
     # Tweak background writeout
     write /proc/sys/vm/dirty_expire_centisecs 200
     write /proc/sys/vm/dirty_background_ratio  5
