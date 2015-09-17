@@ -751,6 +751,9 @@ on property:persist.security.deny_new_usb=dynamic
 on property:security.deny_new_usb=*
     write /proc/sys/kernel/deny_new_usb ${security.deny_new_usb}
 
+on property:persist.privacy.randomize_mac=*
+    write /proc/sys/dev/cnss/randomize_mac ${persist.privacy.randomize_mac}
+
 on property:security.perf_harden=0
     write /proc/sys/kernel/perf_event_paranoid 1
 
