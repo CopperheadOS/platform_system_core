@@ -739,6 +739,18 @@ on property:persist.security.native_debug=0
 on property:persist.security.native_debug=1
     write /proc/sys/kernel/yama/ptrace_scope 0
 
+on property:persist.security.deny_new_usb=disabled
+    write /proc/sys/kernel/deny_new_usb 0
+
+on property:persist.security.deny_new_usb=enabled
+    write /proc/sys/kernel/deny_new_usb 1
+
+on property:persist.security.deny_new_usb=dynamic
+    write /proc/sys/kernel/deny_new_usb 1
+
+on property:security.deny_new_usb=*
+    write /proc/sys/kernel/deny_new_usb ${security.deny_new_usb}
+
 on property:security.perf_harden=0
     write /proc/sys/kernel/perf_event_paranoid 1
 
