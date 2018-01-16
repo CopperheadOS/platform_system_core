@@ -20,6 +20,7 @@
 #include <utils/RefBase.h>
 
 #include <utils/CallStack.h>
+#include <utils/Mutex.h>
 
 #ifndef __unused
 #define __unused __attribute__((__unused__))
